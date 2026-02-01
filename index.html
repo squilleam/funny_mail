@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Will you be my Valentine?</title>
+  <title>This is not for the apartment :) Will you be my Valentine?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Handwritten-style Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap">
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #ffe4ec;
+      font-family: 'Caveat', cursive;
+      background: #fff3f8; /* softer pink */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -22,18 +27,24 @@
       padding: 24px 32px;
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      max-width: 400px;
+      max-width: 420px;
     }
 
-    img {
+    img.main-photo {
       max-width: 100%;
       border-radius: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+    }
+
+    .photo-strip img {
+      width: 70px;
+      border-radius: 8px;
     }
 
     h1 {
-      margin: 0 0 16px;
+      margin: 0 0 12px;
       color: #d81b60;
+      font-size: 32px;
     }
 
     .buttons {
@@ -50,16 +61,16 @@
       cursor: pointer;
       border-radius: 999px;
       padding: 10px 22px;
-      font-size: 16px;
+      font-size: 18px;
       transition: padding 0.2s ease, font-size 0.2s ease, background-color 0.2s ease;
     }
 
     #yesBtn {
-      background-color: #e91e63;
+      background-color: #c41a60;
       color: white;
       font-weight: bold;
       padding: 10px 22px;  /* starting size */
-      font-size: 16px;
+      font-size: 18px;
     }
 
     #noBtn {
@@ -69,17 +80,34 @@
 
     #message {
       margin-top: 16px;
-      font-size: 18px;
+      font-size: 20px;
       color: #d81b60;
+      display: none;
+    }
+
+    #secret {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #777;
       display: none;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <!-- Replace src with your own image file or URL -->
-    <img src="seal.jpeg"
+    <!-- Main personal photo -->
+    <img class="main-photo"
+         src="seal.jpeg"
          alt="seal with all my love" />
+
+    <!-- Optional mini photo strip (replace src or remove this whole div) -->
+    <!--
+    <div class="photo-strip" style="display:flex; gap:8px; justify-content:center; margin-bottom:12px;">
+      <img src="pic1.jpg" alt="Memory 1">
+      <img src="pic2.jpg" alt="Memory 2">
+      <img src="pic3.jpg" alt="Memory 3">
+    </div>
+    -->
 
     <h1>Will you be my Valentine?</h1>
 
@@ -88,13 +116,15 @@
       <button id="noBtn">No</button>
     </div>
 
-    <div id="message">Valentine request: ACCEPTED ✅. Thank you for your cooperation 💓</div>
+    <div id="message">Valentine request: ACCEPTED ✅ Thank you for your cooperation 💓</div>
+    <div id="secret">Now you must wash my belly</div>
   </div>
 
   <script>
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const message = document.getElementById("message");
+    const secret = document.getElementById("secret");
 
     // start from 0 and grow on each No click
     let yesGrow = 0;
@@ -103,17 +133,20 @@
       yesGrow += 4; // increase padding & font size a bit
 
       yesBtn.style.padding = `${10 + yesGrow}px ${22 + yesGrow * 2}px`;
-      yesBtn.style.fontSize = `${16 + yesGrow / 2}px`;
+      yesBtn.style.fontSize = `${18 + yesGrow / 2}px`;
 
       if (yesGrow > 6 && yesGrow <= 12) {
         noBtn.textContent = "Are you sure about that?";
       } else if (yesGrow > 12) {
-        noBtn.textContent = "This button is broken, please use Yes";
+        noBtn.textContent = "Maybe click Yes instead… 🤔";
+      } else if (yesGrow > 18) {
+        noBtn.textContent = "Can a fella goop a little...";
       }
     });
 
     yesBtn.addEventListener("click", () => {
       message.style.display = "block";
+      secret.style.display = "block";
       yesBtn.disabled = true;
       noBtn.disabled = true;
     });
