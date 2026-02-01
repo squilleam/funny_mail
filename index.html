@@ -143,17 +143,17 @@
       // UPDATE THE TEXT BELOW, NOT THE BUTTON
       if (yesGrow === 5) {
         noMessages.textContent = "Are you sure about that?";
-      } else if (yesGrow === 15) {
+      } else if (yesGrow === 10) {
         noMessages.textContent = "Maybe click Yes instead… 🤔";
-      } else if (yesGrow === 25) {
+      } else if (yesGrow === 15) {
         noMessages.textContent = "Can a fella goop a little...";
-      } else if (yesGrow === 35) {
+      } else if (yesGrow === 20) {
         noMessages.textContent = "You actually don't have choice in this matter, sorry!";
-      } else if (yesGrow === 45) {
-        noMessages.textContent = "There's a reason why the yes button is getting larger";
-      } else if (yesGrow >= 35) {
+      } else if (yesGrow === 25) {
         noMessages.textContent = "Okay, now you're just doing this on purpose.";
-      }
+      } else if (yesGrow === 30) {
+        noMessages.textContent = "There's a reason why the button is getting larger";
+      } 
     });
 
     yesBtn.addEventListener("click", () => {
