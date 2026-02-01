@@ -5,13 +5,13 @@
   <title>This is not for the apartment :) Will you be my Valentine though?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Handwritten-style Google Font -->
+  <!-- Readable Google Font (Poppins) -->
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
 
   <style>
     body {
-      font-family: 'Caveat', cursive;
+      font-family: 'Poppins', sans-serif;
       background: #fff3f8; /* softer pink */
       display: flex;
       flex-direction: column;
@@ -44,7 +44,8 @@
     h1 {
       margin: 0 0 12px;
       color: #d81b60;
-      font-size: 32px;
+      font-size: 24px;
+      line-height: 1.3;
     }
 
     .buttons {
@@ -68,7 +69,7 @@
     #yesBtn {
       background-color: #c41a60;
       color: white;
-      font-weight: bold;
+      font-weight: 600;
       padding: 10px 22px;  /* starting size */
       font-size: 18px;
     }
@@ -76,18 +77,27 @@
     #noBtn {
       background-color: #eeeeee;
       color: #333;
+      font-weight: 500;
+    }
+
+    /* Text that reacts to No clicks */
+    #noMessages {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #777;
+      min-height: 1.2em; /* keeps space even before text shows */
     }
 
     #message {
       margin-top: 16px;
-      font-size: 20px;
+      font-size: 18px;
       color: #d81b60;
       display: none;
     }
 
     #secret {
       margin-top: 8px;
-      font-size: 16px;
+      font-size: 14px;
       color: #777;
       display: none;
     }
@@ -100,21 +110,15 @@
          src="seal.jpeg"
          alt="seal with all my love" />
 
-    <!-- Optional mini photo strip (replace src or remove this whole div) -->
-    <!--
-    <div class="photo-strip" style="display:flex; gap:8px; justify-content:center; margin-bottom:12px;">
-      <img src="pic1.jpg" alt="Memory 1">
-      <img src="pic2.jpg" alt="Memory 2">
-      <img src="pic3.jpg" alt="Memory 3">
-    </div>
-    -->
-
     <h1>This is not for the apartment :) Will you be my Valentine?</h1>
 
     <div class="buttons">
       <button id="yesBtn">Yes</button>
       <button id="noBtn">No</button>
     </div>
+
+    <!-- FUNNY LINES BELOW THE BUTTONS -->
+    <div id="noMessages"></div>
 
     <div id="message">Valentine request: ACCEPTED ✅ Thank you for your cooperation 💓</div>
     <div id="secret">Wash my belly</div>
@@ -125,6 +129,7 @@
     const noBtn = document.getElementById("noBtn");
     const message = document.getElementById("message");
     const secret = document.getElementById("secret");
+    const noMessages = document.getElementById("noMessages");
 
     // start from 0 and grow on each No click
     let yesGrow = 0;
@@ -135,14 +140,19 @@
       yesBtn.style.padding = `${10 + yesGrow}px ${22 + yesGrow * 2}px`;
       yesBtn.style.fontSize = `${18 + yesGrow / 2}px`;
 
-      if (yesGrow >= 5 && yesGrow < 10) {
-        noBtn.textContent = "Are you sure about that?";
-      } else if (yesGrow >= 10 && yesGrow < 15) {
-        noBtn.textContent = "Maybe click Yes instead… 🤔";
-      } else if (yesGrow >= 15 && yesGrow < 20) {
-        noBtn.textContent = "Can a fella goop a little...";
-      } else if (yesGrow >= 20) {
-        noBtn.textContent = "You actually don't have choice in this matter, sorry!";
+      // UPDATE THE TEXT BELOW, NOT THE BUTTON
+      if (yesGrow === 5) {
+        noMessages.textContent = "Are you sure about that?";
+      } else if (yesGrow === 10) {
+        noMessages.textContent = "Maybe click Yes instead… 🤔";
+      } else if (yesGrow === 15) {
+        noMessages.textContent = "Can a fella goop a little...";
+      } else if (yesGrow === 20) {
+        noMessages.textContent = "You actually don't have choice in this matter, sorry!";
+      } else if (yesGrow === 25) {
+        noMessages.textContent = "There's a reason why the yes button is getting larger";
+      } else if (yesGrow >= 30) {
+        noMessages.textContent = "Okay, now you're just doing this on purpose.";
       }
     });
 
