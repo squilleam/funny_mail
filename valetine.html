@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Will you be my Valentine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffe4ec;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 24px 32px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      max-width: 400px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: #d81b60;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;     /* stack vertically */
+      align-items: center;        /* center horizontally */
+      gap: 12px;                  /* space between Yes and No */
+      margin-top: 16px;
+      min-height: 120px;          /* reserve vertical room for growth */
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 16px;
+      transition: padding 0.2s ease, font-size 0.2s ease, background-color 0.2s ease;
+    }
+
+    #yesBtn {
+      background-color: #e91e63;
+      color: white;
+      font-weight: bold;
+      padding: 10px 22px;  /* starting size */
+      font-size: 16px;
+    }
+
+    #noBtn {
+      background-color: #eeeeee;
+      color: #333;
+    }
+
+    #message {
+      margin-top: 16px;
+      font-size: 18px;
+      color: #d81b60;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Replace src with your own image file or URL -->
+    <img src="seal.jpeg"
+         alt="seal with all my love" />
+
+    <h1>Will you be my Valentine?</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div id="message">Valentine request: ACCEPTED ✅. Thank you for your cooperation 💓</div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const message = document.getElementById("message");
+
+    // start from 0 and grow on each No click
+    let yesGrow = 0;
+
+    noBtn.addEventListener("click", () => {
+      yesGrow += 4; // increase padding & font size a bit
+
+      yesBtn.style.padding = `${10 + yesGrow}px ${22 + yesGrow * 2}px`;
+      yesBtn.style.fontSize = `${16 + yesGrow / 2}px`;
+
+      if (yesGrow > 6 && yesGrow <= 12) {
+        noBtn.textContent = "Are you sure about that?";
+      } else if (yesGrow > 12) {
+        noBtn.textContent = "This button is broken, please use Yes";
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+      message.style.display = "block";
+      yesBtn.disabled = true;
+      noBtn.disabled = true;
+    });
+  </script>
+</body>
+</html>
