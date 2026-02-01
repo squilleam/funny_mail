@@ -5,13 +5,13 @@
   <title>This is not for the apartment :) Will you be my Valentine though?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Readable Google Font (Poppins) -->
+  <!-- Friendly handwritten-style Google Font (Patrick Hand) -->
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap">
 
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Patrick Hand', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: #fff3f8; /* softer pink */
       display: flex;
       flex-direction: column;
@@ -45,7 +45,7 @@
       margin: 0 0 12px;
       color: #d81b60;
       font-size: 24px;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
     .buttons {
@@ -69,7 +69,7 @@
     #yesBtn {
       background-color: #c41a60;
       color: white;
-      font-weight: 600;
+      font-weight: 400;
       padding: 10px 22px;  /* starting size */
       font-size: 18px;
     }
@@ -77,13 +77,13 @@
     #noBtn {
       background-color: #eeeeee;
       color: #333;
-      font-weight: 500;
+      font-weight: 400;
     }
 
     /* Text that reacts to No clicks */
     #noMessages {
       margin-top: 8px;
-      font-size: 14px;
+      font-size: 15px;
       color: #777;
       min-height: 1.2em; /* keeps space even before text shows */
     }
@@ -97,7 +97,7 @@
 
     #secret {
       margin-top: 8px;
-      font-size: 14px;
+      font-size: 15px;
       color: #777;
       display: none;
     }
@@ -157,6 +157,10 @@
     });
 
     yesBtn.addEventListener("click", () => {
+      // Clear / hide No messages when they finally say Yes
+      noMessages.textContent = "";
+      // Or: noMessages.style.display = "none";
+
       message.style.display = "block";
       secret.style.display = "block";
       yesBtn.disabled = true;
