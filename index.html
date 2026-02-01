@@ -109,7 +109,7 @@
     </div>
     -->
 
-    <h1>This is not for the apartment :) Though while I have you, Will you be my Valentine?</h1>
+    <h1>This is not for the apartment :) Will you be my Valentine?</h1>
 
     <div class="buttons">
       <button id="yesBtn">Yes</button>
@@ -117,7 +117,7 @@
     </div>
 
     <div id="message">Valentine request: ACCEPTED ✅ Thank you for your cooperation 💓</div>
-    <div id="secret">Now you must wash my belly</div>
+    <div id="secret">Wash my belly</div>
   </div>
 
   <script>
@@ -130,17 +130,19 @@
     let yesGrow = 0;
 
     noBtn.addEventListener("click", () => {
-      yesGrow += 4; // increase padding & font size a bit
+      yesGrow += 5; // increase padding & font size a bit
 
       yesBtn.style.padding = `${10 + yesGrow}px ${22 + yesGrow * 2}px`;
       yesBtn.style.fontSize = `${18 + yesGrow / 2}px`;
 
-      if (yesGrow > 6 && yesGrow <= 12) {
+      if (yesGrow >= 5 && yesGrow < 10) {
         noBtn.textContent = "Are you sure about that?";
-      } else if (yesGrow > 12 && yesGrow < 18) {
+      } else if (yesGrow >= 10 && yesGrow < 15) {
         noBtn.textContent = "Maybe click Yes instead… 🤔";
-      } else if (yesGrow > 18) {
+      } else if (yesGrow >= 15 && yesGrow < 20) {
         noBtn.textContent = "Can a fella goop a little...";
+      } else if (yesGrow >= 20) {
+        noBtn.textContent = "You actually don't have choice in this matter, sorry!";
       }
     });
 
